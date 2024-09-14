@@ -133,11 +133,47 @@ void Adafruit_TLC59711::setPWM(uint16_t chan, uint16_t pwm) {
  *  @param b
  *          blue value
  */
-void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
-                               uint16_t b) {
-  setPWM(lednum * 3, r);
-  setPWM(lednum * 3 + 1, g);
-  setPWM(lednum * 3 + 2, b);
+void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b) {
+  setPWM(lednum * 6, r);
+  setPWM(lednum * 6 + 1, g);
+  setPWM(lednum * 6 + 2, b);
+}
+
+/*!
+ *  @brief  Set RGB + CCT value for selected LED
+ *  @param  lednum
+ *          selected LED number that for which value will be set
+ *  @param  r
+ *          red value
+ *  @param g
+ *          green value
+ *  @param b
+ *          blue value
+ *  @param cw
+ *          cold white value
+ *  @param ww
+ *          warm white value
+ */
+void Adafruit_TLC59711::setLEDw(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b, uint16_t cw, uint16_t ww) {
+  setPWM(lednum * 6, r);
+  setPWM(lednum * 6 + 1, g);
+  setPWM(lednum * 6 + 2, b);
+  setPWM(lednum * 6 + 3, cw);
+  setPWM(lednum * 6 + 4, ww);
+}
+
+/*!
+ *  @brief  Set the two extra channels not used for RGB + CCT control
+ *  @param  lednum
+ *          selected LED number that for which value will be set
+ *  @param  one
+ *          channel one value
+ *  @param two
+ *          channel two value
+ */
+void Adafruit_TLC59711::setextra(uint8_t lednum, uint16_t one, uint16_t two) {
+  setPWM(lednum * 6 + 5, one);
+  setPWM(lednum * 6 + 6, two);
 }
 
 /*!
@@ -150,12 +186,17 @@ void Adafruit_TLC59711::setLED(uint8_t lednum, uint16_t r, uint16_t g,
  *          green value
  *  @param b
  *          blue value
+ *  @param cw
+ *          cold white value
+ *  @param ww
+ *          warm white value
  */
-void Adafruit_TLC59711::getLED(uint8_t lednum, uint16_t &r, uint16_t &g,
-                               uint16_t &b) {
-  r = pwmbuffer[lednum * 3];
-  g = pwmbuffer[lednum * 3 + 1];
-  b = pwmbuffer[lednum * 3 + 2];
+void Adafruit_TLC59711::getLED(uint8_t lednum, uint16_t &r, uint16_t &g, uint16_t &b, uint16_t &cw, uint16_t &ww) {
+  r = pwmbuffer[lednum * 6];
+  g = pwmbuffer[lednum * 6 + 1];
+  b = pwmbuffer[lednum * 6 + 2];
+  cw = pwmbuffer[lednum * 6 + 3];
+  ww = pwmbuffer[lednum * 6 + 4];
 }
 
 /*!
