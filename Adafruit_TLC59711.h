@@ -38,7 +38,9 @@ public:
 
   void setPWM(uint16_t chan, uint16_t pwm);
   void setLED(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b);
-  void getLED(uint8_t lednum, uint16_t &r, uint16_t &g, uint16_t &b);
+  void setLEDw(uint8_t lednum, uint16_t r, uint16_t g, uint16_t b, uint16_t cw, uint16_t ww);
+  void setextra(uint8_t lednum, uint16_t one, uint16_t two);
+  void getLED(uint8_t lednum, uint16_t &r, uint16_t &g, uint16_t &b, uint16_t &cw, uint16_t &ww);
   void write();
   void setBrightness(uint8_t bcr, uint8_t bcg, uint8_t bcb);
   void simpleSetBrightness(uint8_t BC);
