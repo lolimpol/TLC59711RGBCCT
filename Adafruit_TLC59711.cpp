@@ -171,9 +171,8 @@ void Adafruit_TLC59711::setLEDw(uint8_t lednum, uint16_t r, uint16_t g, uint16_t
  *  @param two
  *          channel two value
  */
-void Adafruit_TLC59711::setextra(uint8_t lednum, uint16_t one, uint16_t two) {
-  setPWM(lednum * 6 + 5, one);
-  setPWM(lednum * 6 + 6, two);
+void Adafruit_TLC59711::setextra(uint8_t lednum, uint16_t i) {
+  setPWM(lednum * 6 + 5, i);
 }
 
 /*!
